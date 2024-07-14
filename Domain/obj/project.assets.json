@@ -345,6 +345,18 @@
             "related": ".xml"
           }
         }
+      },
+      "TS.EntityFrameworkCore.GenericRepository/8.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/GenericRepository.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GenericRepository.dll": {}
+        }
       }
     }
   },
@@ -947,12 +959,27 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "TS.EntityFrameworkCore.GenericRepository/8.0.2": {
+      "sha512": "9UTMQEOORRVNwmdI5hmlYHV2R2sBGOmKMymoflkhBMLiHnLho9Pybcv7bYsoh4Zd2y/x/FSMCySmdSFKHsGsLg==",
+      "type": "package",
+      "path": "ts.entityframeworkcore.genericrepository/8.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net8.0/GenericRepository.dll",
+        "logo.jpg",
+        "ts.entityframeworkcore.genericrepository.8.0.2.nupkg.sha512",
+        "ts.entityframeworkcore.genericrepository.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Ardalis.SmartEnum >= 8.0.0",
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.7"
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.7",
+      "TS.EntityFrameworkCore.GenericRepository >= 8.0.2"
     ]
   },
   "packageFolders": {
@@ -1000,6 +1027,10 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.7, )"
+          },
+          "TS.EntityFrameworkCore.GenericRepository": {
+            "target": "Package",
+            "version": "[8.0.2, )"
           }
         },
         "imports": [
