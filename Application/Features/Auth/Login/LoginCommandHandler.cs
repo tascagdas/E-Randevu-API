@@ -1,3 +1,4 @@
+using Application.Services;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +8,8 @@ using TS.Result;
 namespace Application.Features.Auth.Login;
 
 internal class LoginCommandHandler(
-    UserManager<AppUser> userManager) : IRequestHandler<LoginCommand , Result<LoginCommandResponse>>
+    UserManager<AppUser> userManager,
+    ITokenProvider tokenProvider) : IRequestHandler<LoginCommand , Result<LoginCommandResponse>>
 {
     public async Task<Result<LoginCommandResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
@@ -27,6 +29,6 @@ internal class LoginCommandHandler(
             return Result<LoginCommandResponse>.Failure("Şifre Hatalı");
         }
 
-        return Result<LoginCommandResponse>.Succeed(new LoginCommandResponse(""));
+        return Result<LoginCommandResponse>.Succeed(new LoginCommandResponse(tokenProvider.CreateToken(user)));
     }
 }
