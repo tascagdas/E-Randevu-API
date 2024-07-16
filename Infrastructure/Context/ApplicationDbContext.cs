@@ -1,3 +1,4 @@
+using System.Reflection;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -23,5 +24,8 @@ internal class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,Guid>
         builder.Ignore<IdentityRoleClaim<Guid>>();
         builder.Ignore<IdentityUserLogin<Guid>>();
         builder.Ignore<IdentityUserToken<Guid>>();
+
+        //yapılan config dosyalarındaki ayarların uygulanması için. aşağıdaki metod ve parametre verilmeli.
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
