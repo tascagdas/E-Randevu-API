@@ -1,5 +1,8 @@
 using Domain.Entities;
+using Domain.Repositories;
+using GenericRepository;
 using Infrastructure.Context;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +26,10 @@ public static class DependencyInjection
             options.Password.RequireDigit = false;
             options.Password.RequiredUniqueChars = 0;
         }).AddEntityFrameworkStores<ApplicationDbContext>();
+
+        serviceCollection.AddScoped<IAppointmentRepository, AppointmentRepository>();
+        serviceCollection.AddScoped<IDoctorRepository, DoctorRepository>();
+        serviceCollection.AddScoped<IPatientRepository, PatientRepository>();
         return serviceCollection;
     }
 }
