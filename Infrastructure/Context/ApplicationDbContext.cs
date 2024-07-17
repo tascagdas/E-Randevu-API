@@ -1,12 +1,13 @@
 using System.Reflection;
 using Domain.Entities;
+using GenericRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Context;
 
-internal class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,Guid>
+internal class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,Guid>,IUnitOfWork
 {
     public ApplicationDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
     {

@@ -30,6 +30,9 @@ public static class DependencyInjection
         serviceCollection.AddScoped<IAppointmentRepository, AppointmentRepository>();
         serviceCollection.AddScoped<IDoctorRepository, DoctorRepository>();
         serviceCollection.AddScoped<IPatientRepository, PatientRepository>();
+
+        serviceCollection.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        
         return serviceCollection;
     }
 }
