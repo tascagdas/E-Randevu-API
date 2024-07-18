@@ -8,6 +8,7 @@ using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Scrutor;
 
 namespace Infrastructure;
 
@@ -29,13 +30,20 @@ public static class DependencyInjection
             options.Password.RequiredUniqueChars = 0;
         }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-        serviceCollection.AddScoped<IAppointmentRepository, AppointmentRepository>();
-        serviceCollection.AddScoped<IDoctorRepository, DoctorRepository>();
-        serviceCollection.AddScoped<IPatientRepository, PatientRepository>();
 
+        //scrutor kütüphanesi ile teker teker servisleri ve repositoryleri abstract ile bağlamaya gerek kalmadı. isimleri aynı olduğu sürece kendisi yapıcak.
+        serviceCollection.Scan(action =>
+        {
+            action
+                .FromAssemblies(typeof(DependencyInjection).Assembly)
+                .AddClasses(publicOnly: false)
+                .UsingRegistrationStrategy(registrationStrategy: RegistrationStrategy.Skip)
+                .AsImplementedInterfaces()
+                .WithScopedLifetime();
+        });
+        
         serviceCollection.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
-
-        serviceCollection.AddScoped<ITokenProvider, TokenProvider>();
+        
         
         return serviceCollection;
     }
