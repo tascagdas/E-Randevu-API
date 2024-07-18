@@ -18,7 +18,7 @@ public static class DependencyInjection
     {
         serviceCollection.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlite(configuration.GetConnectionString("Sqlite"));
+            options.UseSqlite(configuration.GetConnectionString("SqliteConnection"));
         });
         serviceCollection.AddIdentity<AppUser, AppRole>(options =>
         {

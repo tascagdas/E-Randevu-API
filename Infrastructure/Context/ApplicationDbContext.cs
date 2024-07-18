@@ -7,11 +7,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Context;
 
-internal class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,Guid>,IUnitOfWork
+internal class ApplicationDbContext : IdentityDbContext
+    <
+        AppUser,
+        AppRole,
+        Guid,
+        IdentityUserClaim<Guid>,
+        AppUserRole,
+        IdentityUserLogin<Guid>,
+        IdentityRoleClaim<Guid>,
+        IdentityUserToken<Guid>
+    >
+    , IUnitOfWork
 {
     public ApplicationDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
     {
-        
     }
 
     public DbSet<Doctor> Doctors { get; set; }
