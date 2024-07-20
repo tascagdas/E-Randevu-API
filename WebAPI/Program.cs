@@ -1,6 +1,7 @@
 using Application;
 using DefaultCorsPolicyNugetPackage;
 using Infrastructure;
+using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,5 +30,6 @@ app.UseHttpsRedirection();
 // app.UseAuthorization();
 app.MapControllers();
 
+Helper.CreateAdminAsync(app).Wait();
 
 app.Run();
