@@ -10,7 +10,7 @@ namespace WebAPI.Controllers
     public class AuthController (IMediator mediator) : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> Login(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Login(LoginCommandRequest request, CancellationToken cancellationToken)
         {
             var response = await mediator.Send(request, cancellationToken);
             return StatusCode(response.StatusCode, response);

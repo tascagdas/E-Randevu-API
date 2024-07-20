@@ -9,9 +9,9 @@ namespace Application.Features.Auth.Login;
 
 internal class LoginCommandHandler(
     UserManager<AppUser> userManager,
-    ITokenProvider tokenProvider) : IRequestHandler<LoginCommand , Result<LoginCommandResponse>>
+    ITokenProvider tokenProvider) : IRequestHandler<LoginCommandRequest , Result<LoginCommandResponse>>
 {
-    public async Task<Result<LoginCommandResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Result<LoginCommandResponse>> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
     {
 
         AppUser? user = await userManager.Users.FirstOrDefaultAsync(u=>
