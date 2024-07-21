@@ -14,6 +14,6 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
         builder.Property(p => p.Town).HasColumnType("varchar(40)");
         builder.Property(p => p.FullAddress).HasColumnType("varchar(250)");
         builder.Property(p => p.IdentityNumber).HasColumnType("varchar(11)");
-        builder.HasIndex(p => p.IdentityNumber).IsUnique(true);
+        builder.HasIndex(p => p.IdentityNumber);
     }
 }

@@ -1,10 +1,6 @@
-using Application.Services;
 using Domain.Entities;
-using Domain.Repositories;
 using GenericRepository;
 using Infrastructure.Context;
-using Infrastructure.Repositories;
-using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
