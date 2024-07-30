@@ -1,4 +1,5 @@
 using Application.Features.Doctors.CreateDoctor;
+using Application.Features.Doctors.DeleteDoctorById;
 using Application.Features.Doctors.GetAllDoctors;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,12 @@ public class DoctorsController : ApiController
     }
     [HttpPost]
     public async Task<IActionResult> CreateDoctor(CreateDoctorCommandRequest request, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(request, cancellationToken);
+        return StatusCode(response.StatusCode, response);
+    }
+    [HttpPost]
+    public async Task<IActionResult> DeleteDoctorById(DeleteDoctorByIdCommandRequest request, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(request, cancellationToken);
         return StatusCode(response.StatusCode, response);
