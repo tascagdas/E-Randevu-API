@@ -6,4 +6,4 @@ namespace Application.Features.Doctors.CreateDoctor;
 public record CreateDoctorCommandRequest(
     string FirstName,
     string LastName,
-    int Department) :IRequest<Result<string>>;
+    int DepartmentValue) :IRequest<Result<string>>;
