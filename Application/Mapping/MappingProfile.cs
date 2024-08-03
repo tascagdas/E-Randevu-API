@@ -1,5 +1,7 @@
 using Application.Features.Doctors.CreateDoctor;
 using Application.Features.Doctors.UpdateDoctor;
+using Application.Features.Patients.CreatePatientCommand;
+using Application.Features.Patients.UpdatePatientCommand;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
@@ -19,5 +21,7 @@ public class MappingProfile : Profile
         {
             options.MapFrom(map => DepartmentEnum.FromValue(map.DepartmentValue));
         });
+        CreateMap<CreatePatientCommandRequest, Patient>();
+        CreateMap<UpdatePatientCommandRequest, Patient>();
     }
 }
