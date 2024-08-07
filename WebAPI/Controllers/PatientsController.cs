@@ -1,6 +1,7 @@
 using Application.Features.Patients.CreatePatientCommand;
 using Application.Features.Patients.DeletePatientByIdCommand;
 using Application.Features.Patients.GetAllPatients;
+using Application.Features.Patients.GetPatientByIdentityNumber;
 using Application.Features.Patients.UpdatePatientCommand;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,12 @@ public class PatientsController : ApiController
     }
     [HttpPost]
     public async Task<IActionResult> UpdatePatient(UpdatePatientCommandRequest request, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(request, cancellationToken);
+        return StatusCode(response.StatusCode, response);
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetPatientByIdentityNumber(GetPatientByIdentityNumberQueryRequest request, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(request, cancellationToken);
         return StatusCode(response.StatusCode, response);
