@@ -21,8 +21,8 @@ public class GetAppointmentsByDoctorIdQueryHandler(IAppointmentRepository appoin
         List<GetAppointmentsByDoctorIdQueryResponse> queryResponse =
             appointments.Select(a => new GetAppointmentsByDoctorIdQueryResponse(
                     a.AppointmentId,
-                    a.EndTime,
                     a.StarTime,
+                    a.EndTime,
                     a.Patient!.FullName,
                     a.Patient))
                 .ToList();
