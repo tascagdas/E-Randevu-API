@@ -18,6 +18,10 @@ public class DeleteAppointmentCommandHandler(
         {
             return Result<string>.Failure(404,"Silinmek istenen randevu bulunamadı.");
         }
+        if (appointment.IsCompleted)
+        {
+            return Result<string>.Failure("Silmeye çalıştığınız randevu tamamlandığı için silinemez.");
+        }
         appointmentRepository.Delete(appointment);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         return Result<string>.Succeed("Randevu silme başarılı.");
