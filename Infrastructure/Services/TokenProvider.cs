@@ -3,11 +3,12 @@ using System.Security.Claims;
 using System.Text;
 using Application.Services;
 using Domain.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Services;
 
-public class TokenProvider : ITokenProvider
+public class TokenProvider(IConfiguration configuration) : ITokenProvider
 {
     public string CreateToken(AppUser user)
     {
@@ -21,12 +22,12 @@ public class TokenProvider : ITokenProvider
 
         DateTime expireDate = DateTime.Now.AddDays(30);
 
-        SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("gencay yildiz cok kral adam... buranin uzun bir deger olmasi gerekli bu sefer eminim."));
+        SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("Jwt:SecretKey").Value ?? string.Empty));
         SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         
         JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
-            issuer: "Çağdaş Taş",
-            audience: "E-randevu",
+            issuer: configuration.GetSection("Jwt:Issuer").Value,
+            audience: configuration.GetSection("Jwt:Audience").Value,
             claims: claims,
             notBefore: DateTime.Now,
             expires: expireDate,

@@ -1,11 +1,12 @@
 using Application.Features.Auth.Login;
 using MediatR;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Abstractions;
 
 namespace WebAPI.Controllers
 {
+    [AllowAnonymous]
     public class AuthController :ApiController
     {
         public AuthController(IMediator mediator) : base(mediator)
