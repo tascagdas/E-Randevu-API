@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Context;
 
-internal class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext
     <
         AppUser,
         AppRole,
