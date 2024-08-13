@@ -2,6 +2,8 @@ using Application.Features.Doctors.CreateDoctor;
 using Application.Features.Doctors.UpdateDoctor;
 using Application.Features.Patients.CreatePatientCommand;
 using Application.Features.Patients.UpdatePatientCommand;
+using Application.Features.Users.CreateUser;
+using Application.Features.Users.UpdateUserCommand;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
@@ -23,5 +25,7 @@ public class MappingProfile : Profile
         });
         CreateMap<CreatePatientCommandRequest, Patient>();
         CreateMap<UpdatePatientCommandRequest, Patient>();
+        CreateMap<CreateUserCommandRequest, AppUser>();
+        CreateMap<UpdateUserCommandRequest, AppUser>();
     }
 }
