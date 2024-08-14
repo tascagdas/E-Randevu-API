@@ -29,6 +29,6 @@ internal class LoginCommandHandler(
             return Result<LoginCommandResponse>.Failure("Şifre Hatalı");
         }
 
-        return Result<LoginCommandResponse>.Succeed(new LoginCommandResponse(tokenProvider.CreateToken(user)));
+        return Result<LoginCommandResponse>.Succeed(new LoginCommandResponse(await tokenProvider.CreateTokenAsync(user)));
     }
 }
