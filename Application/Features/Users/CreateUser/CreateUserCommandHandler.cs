@@ -13,16 +13,17 @@ public class CreateUserCommandHandler(
     UserManager<AppUser> userManager,
     IUserRoleRepository userRoleRepository,
     IUnitOfWork unitOfWork,
-    IMapper mapper): IRequestHandler<CreateUserCommandRequest, Result<string>>
+    IMapper mapper
+    ): IRequestHandler<CreateUserCommandRequest, Result<string>>
 {
     public async Task<Result<string>> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
     {
-        if(await userManager.Users.AnyAsync(p=> p.Email == request.Email))
+        if(await userManager.Users.AnyAsync(p=> p.Email == request.Email, cancellationToken: cancellationToken))
         {
             return Result<string>.Failure("Email zaten kullanılmakta.");
         }
 
-        if (await userManager.Users.AnyAsync(p => p.UserName == request.UserName))
+        if (await userManager.Users.AnyAsync(p => p.UserName == request.UserName, cancellationToken: cancellationToken))
         {
             return Result<string>.Failure("Kullanıcı adı zaten kullanılmakta.");
         }

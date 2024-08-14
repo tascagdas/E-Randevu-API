@@ -7,7 +7,6 @@ using Application.Features.Users.UpdateUserCommand;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
-using Microsoft.Extensions.Options;
 
 namespace Application.Mapping;
 

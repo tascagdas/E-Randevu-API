@@ -5,7 +5,7 @@ using Infrastructure.Context;
 
 namespace Infrastructure.Repositories;
 
-public class UserRoleRepository: Repository <UserRoleRepository , ApplicationDbContext>
+public class UserRoleRepository: Repository<AppUserRole, ApplicationDbContext>, IUserRoleRepository
 {
     public UserRoleRepository(ApplicationDbContext context) : base(context)
     {

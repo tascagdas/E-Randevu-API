@@ -7,7 +7,8 @@ using TS.Result;
 namespace Application.Features.Users.GetAllRolesForUsersQuery;
 
 public class GetAllRolesForUsersQueryHandler(
-    RoleManager<AppRole> roleManager) : IRequestHandler<GetAllRolesForUsersQueryRequest, Result<List<AppRole>>>
+    RoleManager<AppRole> roleManager
+    ) : IRequestHandler<GetAllRolesForUsersQueryRequest, Result<List<AppRole>>>
 {
     public async Task<Result<List<AppRole>>> Handle(GetAllRolesForUsersQueryRequest request, CancellationToken cancellationToken)
     {

@@ -33,7 +33,7 @@ public class GetAllUsersQueryHandler(
             List<AppUserRole> userRoles = await userRoleRepository.Where(p => p.UserId == item.Id).ToListAsync(cancellationToken);
 
             List<Guid> stringRoles = new();
-            List<string?> stringRoleNames = new();
+            List<string?>? stringRoleNames = new();
 
             foreach (var userRole in userRoles)
             {
